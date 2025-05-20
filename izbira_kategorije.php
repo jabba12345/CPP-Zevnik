@@ -15,45 +15,55 @@ if (isset($_GET['kategorija'])) {
     <title>Izbira kategorije vozila</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .kategorija-container {
-            display: inline-block;
-            width: 45%;
-            margin: 10px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            text-align: center;
-            vertical-align: top;
-			margin-left:250px;
-			background-color:white;
-        }
-        .kategorija-container img {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 10px;
-			background-color:white;
-        }
-        .kategorija-container button {
-            padding: 8px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .kategorija-container button:hover {
-            background-color: #45a049;
-        }
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.kategorije-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.kategorija-container {
+    flex: 1 1 200px;
+    max-width: 250px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    background-color: white;
+}
+
+.kategorija-container img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.kategorija-container button {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.kategorija-container button:hover {
+    background-color: #45a049;
+}
+
     </style>
 </head>
 <body>
@@ -62,6 +72,7 @@ if (isset($_GET['kategorija'])) {
         <h1>Izberite kategorijo vozila</h1>
     </div>
     
+    <div class="kategorije-wrapper">
     <!--Kategorija A-->
     <div class="kategorija-container">
         <img src="motor.png" alt="Motor">
@@ -89,5 +100,7 @@ if (isset($_GET['kategorija'])) {
         <div><p>Kategorija D</p></div>
         <button type="button" onclick="location.href='prejsni_testi.php?kategorija=4'">Izberi</button>
     </div>
+</div>
+
 </body>
 </html>
