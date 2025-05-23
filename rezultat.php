@@ -19,14 +19,13 @@ $id_uporabnika = (int)$_SESSION['idu'];
 $dobljene_tocke = 0;
 $pravilni_odgovori = 0;
 
-// Ustvarimo nov test v bazi
+
 $vstavi_test_sql = "INSERT INTO testi (datum_cas, uporabniki_id,kategorije_id) VALUES(NOW(), $id_uporabnika,$kategorija_id)";
 if (!mysqli_query($link, $vstavi_test_sql)) {
     die("Napaka pri shranjevanju testa: " . mysqli_error($link));
 }
 $test_id = mysqli_insert_id($link);
 
-// Izračun maksimalnega števila točk
 $max_tocke = 0;
 foreach ($vprasanja_ids as $id_v) {
     $id_v = (int)$id_v;
@@ -38,7 +37,7 @@ foreach ($vprasanja_ids as $id_v) {
     }
 }
 
-// Obdelava vsakega vprašanja
+
 foreach ($vprasanja_ids as $id_v) {
     $id_v = (int)$id_v;
 
@@ -49,7 +48,6 @@ foreach ($vprasanja_ids as $id_v) {
     $odgovor = $_POST["vprasanje_$id_v"];
     $odgovori = is_array($odgovor) ? $odgovor : [$odgovor];
 
-    // Pridobimo vse odgovore na to vprašanje
     $sql_odgovori = "SELECT odgovori_id, je_pravilen, odgovori_tocke 
                     FROM odgovori 
                     WHERE vprasanja_id = $id_v";
@@ -67,7 +65,7 @@ foreach ($vprasanja_ids as $id_v) {
         }
     }
 
-    // Preverimo, če so vsi označeni pravilni
+    
     $vprasanje_pravilno = true;
     foreach ($odgovori as $odg_id) {
         $odg_id = (int)$odg_id;
@@ -79,7 +77,7 @@ foreach ($vprasanja_ids as $id_v) {
         }
     }
 
-    // Preverimo, ali je kakšen pravilen odgovor izpuščen
+
     foreach ($pravilni_ids as $pravilen_id) {
         if (!in_array($pravilen_id, $odgovori)) {
             $vprasanje_pravilno = false;
@@ -91,7 +89,6 @@ foreach ($vprasanja_ids as $id_v) {
     }
 }
 
-// Izračun procenta
 $procenti = $max_tocke > 0 ? round(($dobljene_tocke / $max_tocke) * 100) : 0;
 
 
@@ -103,7 +100,7 @@ $procenti = $max_tocke > 0 ? round(($dobljene_tocke / $max_tocke) * 100) : 0;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rezultat</title>
-    <link rel="stylesheet" href="rezultat.css"> <!-- Povezava na CSS datoteko -->
+    <link rel="stylesheet" href="rezultat.css"> 
 </head>
 <body>
     <h1>Vaš rezultat: <?php echo $procenti; ?>%</h1>
@@ -115,7 +112,7 @@ $procenti = $max_tocke > 0 ? round(($dobljene_tocke / $max_tocke) * 100) : 0;
             <?php
             $id_v = (int)$id_v;
 
-            // Pridobimo podatke o vprašanju
+            
             $vprasanje_sql = "SELECT v.vprasanje, t.ime AS tip_vprasanja 
                             FROM vprasanja v
                             LEFT JOIN tipi_vprasanja t ON v.tipi_vprasanja_id = t.tipi_vprasanja_id
@@ -123,13 +120,13 @@ $procenti = $max_tocke > 0 ? round(($dobljene_tocke / $max_tocke) * 100) : 0;
             $vprasanje_result = mysqli_query($link, $vprasanje_sql);
             $vprasanje_data = mysqli_fetch_array($vprasanje_result);
 
-            // Pridobimo odgovore za vprašanje
+            
             $odgovori_sql = "SELECT odgovori_id, odgovor, je_pravilen 
                             FROM odgovori 
                             WHERE vprasanja_id = $id_v";
             $odgovori_result = mysqli_query($link, $odgovori_sql);
 
-            // Pridobimo odgovore, ki jih je uporabnik izbral
+    
             $izbrani_sql = "SELECT odgovori_id 
                             FROM odgovori_uporabnikov 
                             WHERE vprasanja_id = $id_v AND uporabniki_id = $id_uporabnika AND testi_id = $test_id";
@@ -148,22 +145,22 @@ $procenti = $max_tocke > 0 ? round(($dobljene_tocke / $max_tocke) * 100) : 0;
                         $is_checked = in_array($odgovor['odgovori_id'], $izbrani_odgovori);
                         $class = '';
                         if ($is_checked && $odgovor['je_pravilen']) {
-                            $class = 'pravilno'; // Uporabnik je pravilno odgovoril
+                            $class = 'pravilno'; 
                         } elseif ($is_checked && !$odgovor['je_pravilen']) {
-                            $class = 'nepravilno'; // Uporabnik je napačno odgovoril
+                            $class = 'nepravilno'; 
                         } elseif (!$is_checked && $odgovor['je_pravilen']) {
-                            $class = 'pravilen-odgovor'; // Prikaz pravilnega odgovora
+                            $class = 'pravilen-odgovor'; 
                         }
                         ?>
                         <?php if ($vprasanje_data['tip_vprasanja'] == 1): ?>
-                            <!-- Radio button za tip vprašanja 1 -->
+                            
                             <input type="radio" 
                                 name="vprasanje_<?php echo $id_v; ?>" 
                                 value="<?php echo $odgovor['odgovori_id']; ?>" 
                                 id="odgovor_<?php echo $odgovor['odgovori_id']; ?>" 
                                 disabled <?php echo $is_checked ? 'checked' : ''; ?>>
                         <?php elseif ($vprasanje_data['tip_vprasanja'] == 2): ?>
-                            <!-- Checkbox za tip vprašanja 2 -->
+                            
                             <input type="checkbox" 
                                 name="vprasanje_<?php echo $id_v; ?>[]" 
                                 value="<?php echo $odgovor['odgovori_id']; ?>" 
@@ -176,7 +173,7 @@ $procenti = $max_tocke > 0 ? round(($dobljene_tocke / $max_tocke) * 100) : 0;
                     </div>
                 <?php endwhile; ?>
 
-                <!-- Prikaz pravilnih odgovorov -->
+            
                 <p class="pravilen-odgovor">
                     Pravilen odgovor: 
                     <?php
@@ -195,9 +192,8 @@ $procenti = $max_tocke > 0 ? round(($dobljene_tocke / $max_tocke) * 100) : 0;
         <?php endforeach; ?>
     </form>
 
-    <!-- Gumba za reši nov test in nazaj na izbiro kategorije -->
     <div style="text-align: center; margin-top: 20px;">
-        <a href="izbira_kategorije.php" style="text-decoration: none;">
+        <a href="index.php" style="text-decoration: none;">
             <button type="button" style="padding: 10px 20px; background-color: #2196F3; color: white; border: none; border-radius: 5px; cursor: pointer;">Nazaj na izbiro kategorije</button>
         </a>
     </div>

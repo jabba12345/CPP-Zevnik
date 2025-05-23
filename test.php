@@ -16,16 +16,16 @@ if ($kategorija_id > 0) {
                 LIMIT 20";
     $vprasanja = mysqli_query($link, $vprasanja_sql);
 
-    // Create an array to store the IDs of the questions
+
     $vprasanja_ids = [];
     if ($vprasanja) {
         while ($row = mysqli_fetch_array($vprasanja)) {
             $vprasanja_ids[] = $row['vprasanja_id'];
         }
-        // Reset the pointer of the result set
+        
         mysqli_data_seek($vprasanja, 0);
     }
-    // Make $vprasanja_ids globally accessible
+
     
 } 
 ?>
@@ -35,107 +35,11 @@ if ($kategorija_id > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test</title>
-    <style>
-        /* Splošni stil za telo */
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-
-        /* Glavni naslov */
-        h1, h3 {
-            text-align: center;
-            color: #4CAF50;
-            margin-top: 20px;
-        }
-
-        /* Kontejner za vprašanja */
-        form {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Vsako vprašanje */
-        .vprasanje {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        
-        /* Naslov vprašanja */
-        .vprasanje h3 {
-            margin: 0 0 10px;
-            color: #333;
-        }
-
-        /* Slike */
-        img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-            margin: 10px 0;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Radio in checkbox */
-        input[type="radio"],
-        input[type="checkbox"] {
-            margin-right: 10px;
-        }
-
-        /* Oznake za odgovore */
-        label {
-            font-size: 1em;
-            cursor: pointer;
-            display: inline-block;
-            margin-bottom: 5px;
-        }
-
-        /* Gumb za oddajo */
-        input[type="submit"] {
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background-color 0.3s, transform 0.2s;
-            display: block;
-            width: 100%;
-        }
-
-        input[type="submit"]:hover {
-            background: #45a049;
-            transform: scale(1.02);
-        }
-
-        /* Sporočilo, če ni vprašanj */
-        p {
-            text-align: center;
-            font-size: 1.2em;
-            color: #F44336;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="test.css">
 </head>
 
 <body>
-<form method="post" action="rezultat.php">
+<form action="rezultat.php?kategorija=<?php echo $kategorija_id; ?>" method="POST">
 
         <?php if (!empty($vprasanja)): ?>
             <?php while($vprasanje = mysqli_fetch_array($vprasanja)): ?>
@@ -159,7 +63,7 @@ if ($kategorija_id > 0) {
         ?>
 
         <?php foreach($odgovori as $odgovor): ?>
-            <!-- Shrani ID odgovora -->
+    
             <input type="hidden" name="odgovori_id[]" value="<?php echo $odgovor['odgovori_id']; ?>">
             <div>
                 <?php if ($tip_id == 1): ?>

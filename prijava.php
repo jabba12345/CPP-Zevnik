@@ -18,7 +18,7 @@ if(isset($_POST['sub'])){
         $_SESSION['idu'] = $row['uporabniki_id'];
         $_SESSION['log']=TRUE;
         $ime=$_SESSION['name'];
-		header("location:izbira_kategorije.php");
+		header("location:index.php");
     } else {
         $error = 'Napačno geslo ali email!!!';
     }
