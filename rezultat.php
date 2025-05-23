@@ -5,6 +5,7 @@ include_once "seja.php";
 $vprasanja_ids = $_POST['vprasanja_ids'] ?? [];
 $odgovor_id = $_POST['odgovori_id'] ?? [];
 
+$kategorija_id = (int)$_GET['kategorija'];
 
 if (!isset($_SESSION['idu'])) {
     die("Napaka: uporabnik ni prijavljen.");
@@ -19,7 +20,7 @@ $dobljene_tocke = 0;
 $pravilni_odgovori = 0;
 
 // Ustvarimo nov test v bazi
-$vstavi_test_sql = "INSERT INTO testi (datum_cas, uporabniki_id) VALUES(NOW(), $id_uporabnika)";
+$vstavi_test_sql = "INSERT INTO testi (datum_cas, uporabniki_id,kategorije_id) VALUES(NOW(), $id_uporabnika,$kategorija_id)";
 if (!mysqli_query($link, $vstavi_test_sql)) {
     die("Napaka pri shranjevanju testa: " . mysqli_error($link));
 }

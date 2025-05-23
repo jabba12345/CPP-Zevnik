@@ -20,22 +20,20 @@ if (isset($_GET['kategorija'])) {
     exit();
 }
 
-// Pripravi poizvedbo za iskanje prejšnjih testov tega uporabnika za to kategorijo
+
 $poizvedba = "
-    SELECT 
-        testi.testi_id,
-        testi.datum_cas,
-        SUM(odgovori.odgovori_tocke) AS dosezene_tocke,
-        SUM(vprasanja.tocke_vprasanja) AS max_tocke
-    FROM testi
-    JOIN odgovori_uporabnikov ON testi.testi_id = odgovori_uporabnikov.testi_id
-    JOIN odgovori ON odgovori_uporabnikov.odgovori_id = odgovori.odgovori_id
-    JOIN vprasanja ON odgovori_uporabnikov.vprasanja_id = vprasanja.vprasanja_id
-    JOIN kategorije_vprasanja ON vprasanja.vprasanja_id = kategorije_vprasanja.vprasanja_id
-    WHERE testi.uporabniki_id = $uporabnik_id AND kategorije_vprasanja.kategorije_id = $kategorija_id
-    GROUP BY testi.testi_id, testi.datum_cas
-    ORDER BY testi.datum_cas DESC
-    LIMIT 5;
+SELECT 
+    t.testi_id,
+    t.datum_cas,
+    SUM(odg.odgovori_tocke) AS dosezene_tocke,
+    SUM(v.tocke_vprasanja) AS max_tocke
+FROM odgovori_uporabnikov odgu
+INNER JOIN vprasanja v ON odgu.vprasanja_id = v.vprasanja_id
+INNER JOIN testi t ON odgu.testi_id = t.testi_id
+INNER JOIN odgovori odg ON odgu.odgovori_id = odg.odgovori_id
+WHERE t.uporabniki_id = $uporabnik_id AND t.kategorije_id = $kategorija_id
+GROUP BY t.testi_id, t.datum_cas
+LIMIT 5;
 ";
 
 $rezultat = mysqli_query($link, $poizvedba);
