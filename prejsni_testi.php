@@ -33,7 +33,8 @@ INNER JOIN testi t ON odgu.testi_id = t.testi_id
 INNER JOIN odgovori odg ON odgu.odgovori_id = odg.odgovori_id
 WHERE t.uporabniki_id = $uporabnik_id AND t.kategorije_id = $kategorija_id
 GROUP BY t.testi_id, t.datum_cas 
-ORDER BY t.datum_cas DESC;
+ORDER BY t.datum_cas DESC
+LIMIT 5;
 ";
 
 $rezultat = mysqli_query($link, $poizvedba);
@@ -48,7 +49,7 @@ $rezultat = mysqli_query($link, $poizvedba);
 
 </head>
 <body>
-      <?php include_once 'glava.php'; ?>
+  <?php include_once 'glava.php'; ?>
 <h2>Prejšnji testi</h2>
 
 

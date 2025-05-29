@@ -1,6 +1,5 @@
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.5;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -22,13 +21,12 @@ form {
     border: 1px solid #ccc;
     box-shadow: none;
 }
-
 form > div {
     margin-bottom: 16px;
     padding: 10px;
     border: 1px solid #eee;
     border-radius: 4px;
-    background-color: #fafafa;
+    background-color: rgb(244, 242, 242);
 }
 
 
@@ -54,7 +52,7 @@ label {
     margin-bottom: 4px;
 }
 
-button, input[type="submit"] {
+input[type="submit"] {
     background: #2e852d;
     color: white;
     border: none;
@@ -67,7 +65,7 @@ button, input[type="submit"] {
     width: 100%;
 }
 
-button:hover, input[type="submit"]:hover {
+input[type="submit"]:hover {
     background: #1a5b20;
 }
 
