@@ -5,9 +5,14 @@ include_once 'seja.php';
 $error = '';
 
 if (isset($_POST['sub'])) {
-    $ime = $_POST['uporabnisko'];
-    $mail = $_POST['mail'];
+    $ime = filter_var($_POST['uporabnisko'], FILTER_SANITIZE_SPECIAL_CHARS);;
+    $mail = filter_var($_POST['mail'], FILTER_SANITIZE_EMAIL);
     $geslo = $_POST['geslo'];
+
+    $ime = mysqli_real_escape_string($link, $ime);
+    $mail = mysqli_real_escape_string($link, $mail);
+    $geslo = mysqli_real_escape_string($link, $geslo);
+
 	$geslo2=sha1($geslo);
 
     $checkQuery = "SELECT * FROM uporabniki WHERE email='$mail'";

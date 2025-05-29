@@ -5,9 +5,10 @@ include_once 'seja.php';
 if(isset($_POST['sub'])){
     $error = '';
     $ime = '';
-    $mail = $_POST['mail'];
-    $geslo = $_POST['pas'];
+    $mail = mysqli_real_escape_string($link, $_POST['mail']);
+    $geslo = mysqli_real_escape_string($link, $_POST['pas']);
 	$geslo2=sha1($geslo);
+
     
     $sql = "SELECT * FROM uporabniki WHERE email='$mail' AND geslo='$geslo2';";
     $result = mysqli_query($link, $sql);
