@@ -69,12 +69,12 @@ if (isset($_POST['zbrisi'])) {
 
         $uporabnik_id = $_SESSION['idu'];
 
-        $uporabnik_sql = "SELECT * FROM uporabniki WHERE uporabniki_id = $uporabnik_id AND tip_uporabnika_id = 1";
-        $uporabnik_result = mysqli_query($link, $uporabnik_sql);
-        if (mysqli_num_rows($result) == 0) {
-            header("Location: index.php");
-            exit(); 
-        }
+$sql = "SELECT * FROM uporabniki WHERE uporabniki_id = $uporabnik_id AND tip_uporabnika_id = 1";
+$result = mysqli_query($link, $sql);
+if (mysqli_num_rows($result) == 0) {
+    header("Location: index.php");
+    exit(); 
+}
     ?>
     <div class="container">
         <h2 class="naslov">Brisanje vprašanj</h2>
