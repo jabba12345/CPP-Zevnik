@@ -60,11 +60,14 @@ switch($kategorija_id){
 }
 for($i=1;$i<=4;$i++){
     $odgovor = $_POST['odgovor'.$i];
-    $pravilen = $_POST['pravilen'.$i];
-    $tocke_odgovor = $_POST['tocke_odgovor'.$i];
-    $sql = "INSERT INTO odgovori (odgovor, je_pravilen, vprasanja_id, odgovori_tocke)
-            VALUES ('$odgovor', '$pravilen', $vprasanje_id, '$tocke_odgovor')";
-    $result = mysqli_query($link, $sql);
+
+    if (!empty($odgovor)) {
+        $pravilen = $_POST['pravilen'.$i];
+        $tocke_odgovor = $_POST['tocke_odgovor'.$i];
+        $sql = "INSERT INTO odgovori (odgovor, je_pravilen, vprasanja_id, odgovori_tocke)
+                VALUES ('$odgovor', '$pravilen', $vprasanje_id, '$tocke_odgovor')";
+        $result = mysqli_query($link, $sql);
+    }
 }
 
 
@@ -122,7 +125,7 @@ exit();
                 <div id="odgovori-fields">
                     <div class="odgovor-row">
                     <label for="odgovor1" class>Odgovor1: </label>
-                    <input type="text" name="odgovor1" id="odgovor1_id" class="odgovor" required>
+                    <input type="text" name="odgovor1" id="odgovor1_id" class="odgovor">
                     <label for="tocke_odgovor" class="tocke_odgovor_label">Tocke</label>
                     <input type="number" name="tocke_odgovor1" id="tocke_odgovor1" class="tocke_odgovor">
                     <select name="pravilen1" id="pravilen1" class="pravilen-select">
@@ -134,7 +137,7 @@ exit();
 
                 <div class="odgovor-row">
                     <label for="odgovor2" class>Odgovor2: </label>
-                    <input type="text" name="odgovor2" id="odgovor2_id" class="odgovor" required>
+                    <input type="text" name="odgovor2" id="odgovor2_id" class="odgovor">
                     <label for="tocke_odgovor2" class="tocke_odgovor_label">Tocke</label>
                     <input type="number" name="tocke_odgovor2" id="tocke_odgovor2" class="tocke_odgovor">
                     <select name="pravilen2" id="pravilen2" class="pravilen-select">
@@ -146,7 +149,7 @@ exit();
 
                     <div class="odgovor-row">
                     <label for="odgovor3" class>Odgovor3: </label>
-                    <input type="text" name="odgovor3" id="odgovor3_id" class="odgovor" required>
+                    <input type="text" name="odgovor3" id="odgovor3_id" class="odgovor">
                     <label for="tocke_odgovor3" class="tocke_odgovor_label">Tocke</label>
                     <input type="number" name="tocke_odgovor3" id="tocke_odgovor3" class="tocke_odgovor">
                     <select name="pravilen3" id="pravilen3" class="pravilen-select">
@@ -158,7 +161,7 @@ exit();
 
                     <div class="odgovor-row">
                     <label for="odgovor4" class>Odgovor4: </label>
-                    <input type="text" name="odgovor4" id="odgovor4_id" class="odgovor" required>
+                    <input type="text" name="odgovor4" id="odgovor4_id" class="odgovor">
                     <label for="tocke_odgovor4" class="tocke_odgovor_label">Tocke</label>
                     <input type="number" name="tocke_odgovor4" id="tocke_odgovor4" class="tocke_odgovor">
                     <select name="pravilen4" id="pravilen4" class="pravilen-select">
