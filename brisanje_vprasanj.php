@@ -8,6 +8,9 @@ $vprasanja_sql = "SELECT v.vprasanja_id, v.vprasanje FROM vprasanja v";
 $result = mysqli_query($link, $vprasanja_sql);
 
 if (isset($_POST['zbrisi_vse'])) {
+    $sql = "DELETE FROM odgovori_uporabnikov";
+    $result = mysqli_query($link, $sql);
+
     $sql = "DELETE FROM slike";
     $result = mysqli_query($link, $sql);
 
@@ -70,8 +73,8 @@ if (isset($_POST['zbrisi'])) {
         $uporabnik_id = $_SESSION['idu'];
 
 $sql = "SELECT * FROM uporabniki WHERE uporabniki_id = $uporabnik_id AND tip_uporabnika_id = 1";
-$result = mysqli_query($link, $sql);
-if (mysqli_num_rows($result) == 0) {
+$admin_result = mysqli_query($link, $sql);
+if (mysqli_num_rows($admin_result) == 0) {
     header("Location: index.php");
     exit(); 
 }
