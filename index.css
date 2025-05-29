@@ -1,4 +1,4 @@
-     body {
+body {
     font-family: Arial, sans-serif;
     max-width: 1200px;
     margin: 0 auto;
@@ -46,4 +46,33 @@
 
 .kategorija-container button:hover {
     background-color: #45a049;
+}
+
+.admin-btna {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin: 24px 0;
+}
+
+.admin-btna button {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+}
+.brisi-vprasanja{
+    background-color: red;
+    color: white;
+}
+.brisi-vprasanja:hover{
+    background-color: rgb(225, 7, 7);
+}
+.dodaj-vprasanja{
+    background-color: rgb(61, 206, 223);
+    color: white;
+}
+.dodaj-vprasanja:hover{
+    background-color: rgb(52, 175, 189);
 }

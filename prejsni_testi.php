@@ -1,15 +1,15 @@
 <?php
-// Vključi datoteke za povezavo z bazo in sejo
+
 include 'povezava.php';
 include 'seja.php';
 
-// Preveri, če je uporabnik prijavljen
+
 if (!isset($_SESSION['idu'])) {
     header("Location: prijava.php");
     exit();
 }
 
-// Dobi ID uporabnika iz seje
+
 $uporabnik_id = $_SESSION['idu'];
 
 // Preveri, če je poslana kategorija
@@ -32,8 +32,8 @@ INNER JOIN vprasanja v ON odgu.vprasanja_id = v.vprasanja_id
 INNER JOIN testi t ON odgu.testi_id = t.testi_id
 INNER JOIN odgovori odg ON odgu.odgovori_id = odg.odgovori_id
 WHERE t.uporabniki_id = $uporabnik_id AND t.kategorije_id = $kategorija_id
-GROUP BY t.testi_id, t.datum_cas
-LIMIT 5;
+GROUP BY t.testi_id, t.datum_cas 
+ORDER BY t.datum_cas DESC;
 ";
 
 $rezultat = mysqli_query($link, $poizvedba);
@@ -43,18 +43,20 @@ $rezultat = mysqli_query($link, $poizvedba);
 <html>
 <head>
     <title>Prejšnji testi</title>
-    <link rel="stylesheet" href="prejsni_testi.css"> <!-- Povezava na CSS datoteko -->
+    <link rel="stylesheet" href="prejsni_test.css"> 
+    <button class="nazaj"onclick="location.href='index.php'">Nazaj</button>
+
 </head>
 <body>
-
+      <?php include_once 'glava.php'; ?>
 <h2>Prejšnji testi</h2>
 
-<!-- Gumb za reševanje novega testa -->
+
 <a href="test.php?kategorija=<?php echo $kategorija_id; ?>" style="text-decoration: none;">
     <button>Reši test</button>
 </a>
 
-<!-- Tabela z rezultati -->
+
 <table border="1" cellpadding="10">
     <tr>
         <th>Datum</th>
@@ -92,7 +94,7 @@ $rezultat = mysqli_query($link, $poizvedba);
         echo "<td>$datum</td>";
         echo "<td>" . round($tocke, 2) . " / " . round($max_tocke, 2) . "</td>";
         echo "<td>" . round($procent, 2) . "%</td>";
-        echo "<td class='$status_class'>$status</td>";
+        echo "<td>$status</td>";
         echo "</tr>";
     }
     ?>

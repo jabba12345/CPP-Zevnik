@@ -20,12 +20,38 @@ $dobljene_tocke = 0;
 $pravilni_odgovori = 0;
 
 
-$vstavi_test_sql = "INSERT INTO testi (datum_cas, uporabniki_id,kategorije_id) VALUES(NOW(), $id_uporabnika,$kategorija_id)";
-if (!mysqli_query($link, $vstavi_test_sql)) {
-    die("Napaka pri shranjevanju testa: " . mysqli_error($link));
-}
+$vstavi_test_sql = "INSERT INTO testi (datum_cas, uporabniki_id,kategorije_id) VALUES(NOW(), $id_uporabnika,$kategorija_id);";
+$result = mysqli_query($link, $vstavi_test_sql);
 $test_id = mysqli_insert_id($link);
 
+//
+foreach ($vprasanja_ids as $id_vprasanja) {
+    if (!isset($_POST["vprasanje_$id_vprasanja"])) {
+        continue;
+    }
+
+    $izbrani_odgovori = $_POST["vprasanje_$id_vprasanja"];
+    if (!is_array($izbrani_odgovori)) {
+        $izbrani_odgovori = [$izbrani_odgovori];
+    }
+
+    foreach ($izbrani_odgovori as $odgovor_id) {
+        $id_v = (int)$id_vprasanja;
+        $od_v = (int)$odgovor_id;
+
+        // Preveri, ali je odgovor veljaven (pripada temu vprašanju)
+        $sql = "SELECT 1 FROM odgovori WHERE vprasanja_id = $id_v AND odgovori_id = $od_v";
+        $result = mysqli_query($link, $sql);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            $vstavi_odgovor = "INSERT INTO odgovori_uporabnikov (testi_id, vprasanja_id, odgovori_id, uporabniki_id)
+                            VALUES ($test_id, $id_v, $od_v, $id_uporabnika)";
+            mysqli_query($link, $vstavi_odgovor);
+        }
+    }
+}
+
+//
 $max_tocke = 0;
 foreach ($vprasanja_ids as $id_v) {
     $id_v = (int)$id_v;

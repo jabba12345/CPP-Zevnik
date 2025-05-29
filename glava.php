@@ -7,41 +7,8 @@ if (!isset($_SESSION['idu'])) {
 }
 ?>
 
-<style>
-    .display_ime {
-        position: absolute;
-        top: 10px;
-        left: 20px;
-        color: black;
-        font-weight: bold;
-        font-size: 16px;
-    }
-
-    .odjava {
-        position: absolute;
-        top: 10px;
-        right: 20px; /* Moves the button to the top-right corner */
-    }
-
-    .odjava button {
-        background-color: #ff4444;
-        color: white;
-        border: none;
-        padding: 8px 15px;
-        border-radius: 5px;
-        font-size: 14px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .odjava button:hover {
-        background-color: #cc0000;
-    }
-</style>
-
-
 <div>
+    <link rel="stylesheet" href="glava.css">
     <?php 
 
     if(isset($_SESSION['idu'])) {

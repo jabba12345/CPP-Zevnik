@@ -6,6 +6,13 @@ $kategorija = 0;
 if (isset($_GET['kategorija'])) {
     $kategorija = (int)$_GET['kategorija'];
 }
+
+$uporabnik_id = $_SESSION['idu'];
+
+$sql = "SELECT * FROM uporabniki WHERE uporabniki_id = $uporabnik_id AND tip_uporabnika_id = 1";
+$result = mysqli_query($link, $sql);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="sl">
@@ -48,7 +55,16 @@ if (isset($_GET['kategorija'])) {
         <img src="bus-20.png" alt="Avtobusi">
         <div><p>Kategorija D</p></div>
         <button type="button" onclick="location.href='prejsni_testi.php?kategorija=4'">Izberi</button>
-    </div>
+    </div> <br>
+
+    <?php
+    if (mysqli_num_rows($result) > 0) {
+    echo '<div class="admin-btna">
+        <button class="dodaj-vprasanja" onclick="location.href=\'dodajanje_vprasanja.php\'">Dodaj Vprasanja</button>
+        <button class="brisi-vprasanja" onclick="location.href=\'brisanje_vprasanj.php\'">Zbrisi vprasanja</button>
+    </div>';
+    }
+    ?>
 </div>
 
 </body>

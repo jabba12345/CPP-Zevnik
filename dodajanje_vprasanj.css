@@ -1,0 +1,131 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background: #fff;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+label {
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 4px;
+}
+
+.vprasanje-row,
+.odgovor-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.vprasanje-label,
+.odgovor-label {
+    min-width: 90px;
+    margin-right: 8px;
+}
+
+.vprasanje-input,
+.odgovor-input {
+    flex: 1;
+    padding: 6px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-size: 1em;
+    margin-right: 8px;
+}
+
+.tocke_vprasanja_label,
+.tocke_odgovor_label {
+    min-width: 45px;
+    margin-right: 6px;
+    font-weight: normal;
+}
+
+.tocke_vprasanja,
+.tocke_odgovor {
+    width: 40px;
+    padding: 4px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-size: 0.95em;
+    margin-right: 8px;
+}
+
+select {
+    padding: 6px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-size: 1em;
+    margin-right: 8px;
+}
+
+input[type="file"] {
+    margin-bottom: 12px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background: #4fc3f7;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.nalaganje_slik {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 18px 0;
+    padding: 14px;
+}
+
+.slika-btn {
+    background: #e0e0e0;
+    color: #333;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.slika-btn:hover {
+    background: #7ae2a7;
+}
+
+.submit-btn:hover {
+    background: #0288d1;
+}
+
+.nazaj {
+    background: #eee;
+    color: #333;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    padding: 5px 12px;
+    font-size: 0.9em;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-bottom: 8px;
+    margin-right: 8px;
+    display: block;
+}
+
+.nazaj:hover {
+    background: #b3e5fc;
+}

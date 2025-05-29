@@ -16,7 +16,7 @@ if (isset($_POST['sub'])) {
     if (mysqli_num_rows($checkResult) > 0) {
         $error = "Uporabnik že obstaja!!!";
     } else {
-        $sql = "INSERT INTO uporabniki (ime, geslo, email) VALUES ('$ime', '$geslo2', '$mail')";
+        $sql = "INSERT INTO uporabniki (ime, geslo, email,tip_uporabnika_id) VALUES ('$ime', '$geslo2', '$mail',2)";
         $result = mysqli_query($link, $sql);
         header("Location: prijava.php");
         exit();
