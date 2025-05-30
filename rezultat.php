@@ -11,9 +11,6 @@ if (!isset($_SESSION['idu'])) {
     die("Napaka: uporabnik ni prijavljen.");
 }
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST' || empty($_POST)) {
-    die("Napaka: ni podatkov.");
-}
 
 $id_uporabnika = (int)$_SESSION['idu'];
 $dobljene_tocke = 0;
