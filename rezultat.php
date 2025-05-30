@@ -39,7 +39,7 @@ foreach ($vprasanja_ids as $id_vprasanja) {
         $id_v = (int)$id_vprasanja;
         $od_v = (int)$odgovor_id;
 
-        // Preveri, ali je odgovor veljaven (pripada temu vprašanju)
+        
         $sql = "SELECT 1 FROM odgovori WHERE vprasanja_id = $id_v AND odgovori_id = $od_v";
         $result = mysqli_query($link, $sql);
 
