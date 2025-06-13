@@ -5,7 +5,7 @@ include_once 'seja.php';
 $error = '';
 
 if (isset($_POST['sub'])) {
-    $ime = filter_var($_POST['uporabnisko'], FILTER_SANITIZE_SPECIAL_CHARS);;
+    $ime = filter_var($_POST['uporabnisko'], FILTER_SANITIZE_SPECIAL_CHARS);
     $mail = filter_var($_POST['mail'], FILTER_SANITIZE_EMAIL);
     $geslo = $_POST['geslo'];
 
