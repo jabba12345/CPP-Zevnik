@@ -7,10 +7,9 @@ if (isset($_GET['kategorija'])) {
     $kategorija = (int)$_GET['kategorija'];
 }
 
-$uporabnik_id = $_SESSION['idu'];
 
-$sql = "SELECT * FROM uporabniki WHERE uporabniki_id = $uporabnik_id AND tip_uporabnika_id = 1";
-$result = mysqli_query($link, $sql);
+
+
 
 
 ?>
@@ -23,7 +22,11 @@ $result = mysqli_query($link, $sql);
     <title>Izbira kategorije vozila</title>
 </head>
 <body>
-<?php include_once 'glava.php'; ?>
+<?php include_once 'glava.php'; 
+$uporabnik_id= $_SESSION['idu'];
+$sql = "SELECT * FROM uporabniki WHERE uporabniki_id = $uporabnik_id AND tip_uporabnika_id = 1";
+$result = mysqli_query($link, $sql);
+?>
     <div class="header">
         <h1>Izberite kategorijo vozila</h1>
     </div>
@@ -31,41 +34,47 @@ $result = mysqli_query($link, $sql);
     <div class="kategorije-wrapper">
     <!--Kategorija A-->
     <div class="kategorija-container">
-        <img src="motor.png" alt="Motor">
+        <img src="Slike/motor.png" alt="Motor">
         <div><p>Kategorija A</p></div>
         <button type="button" onclick="location.href='prejsni_testi.php?kategorija=1'">Izberi</button>
     </div>
     
     <!--Kategorija B-->
     <div class="kategorija-container">
-        <img src="avto.png" alt="Osebna vozila">
+        <img src="Slike/avto.png" alt="Osebna vozila">
         <div><p>Kategorija B</p></div>
         <button type="button" onclick="location.href='prejsni_testi.php?kategorija=2'">Izberi</button>
     </div>
     
     <!--Kategorija C-->
     <div class="kategorija-container">
-        <img src="tovornjak.png" alt="Tovorna vozila">
+        <img src="Slike/tovornjak.png" alt="Tovorna vozila">
         <div><p>Kategorija C</p></div>
         <button type="button" onclick="location.href='prejsni_testi.php?kategorija=3'">Izberi</button>
     </div>
     
     <!--Kategorija D-->
     <div class="kategorija-container">
-        <img src="bus-20.png" alt="Avtobusi">
+        <img src="Slike/bus-20.png" alt="Avtobusi">
         <div><p>Kategorija D</p></div>
         <button type="button" onclick="location.href='prejsni_testi.php?kategorija=4'">Izberi</button>
     </div> <br>
+    
 
-    <?php
+</div>
+<?php
     if (mysqli_num_rows($result) > 0) {
     echo '<div class="admin-btna">
         <button class="dodaj-vprasanja" onclick="location.href=\'dodajanje_vprasanja.php\'">Dodaj Vprasanja</button>
         <button class="brisi-vprasanja" onclick="location.href=\'brisanje_vprasanj.php\'">Zbrisi vprasanja</button>
     </div>';
     }
-    ?>
-</div>
+?>
 
 </body>
+<footer>
+    <?php
+        include_once 'noga.php';
+    ?>
+</footer>
 </html>

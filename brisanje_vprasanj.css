@@ -20,23 +20,6 @@ body {
     color: #222;
 }
 
-.gumb-brisanje-vse input[type="submit"],
-.gumb-brisanje-posamezno input[type="submit"] {
-    background: #e74c3c;
-    color: #fff;
-    border: none;
-    padding: 7px 14px;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 15px;
-    margin-bottom: 10px;
-}
-
-.gumb-brisanje-vse input[type="submit"]:hover,
-.gumb-brisanje-posamezno input[type="submit"]:hover {
-    background: #b71c1c;
-}
-
 .tabela-vprasanja {
     width: 100%;
     border-collapse: collapse;
@@ -71,4 +54,38 @@ body {
 
 .nazaj:hover {
     background: #b3e5fc;
+}
+
+/* RDEČI GUMBI - splošno pravilo */
+.gumb-brisanje-vse input[type="submit"],
+.gumb-brisanje-posamezno input[type="submit"] {
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.gumb-brisanje-vse input[type="submit"]:hover,
+.gumb-brisanje-posamezno input[type="submit"]:hover {
+    background: #b71c1c;
+}
+
+/* MODRI GUMB - specifično pravilo (mora biti na koncu!) */
+.gumb-urejanje-posamezno input[type="submit"] {
+    background: #47e1f6; /* modra */
+    color: #fff;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.gumb-urejanje-posamezno input[type="submit"]:hover {
+    background: #34a7b6;
 }

@@ -12,20 +12,22 @@ body {
 }
 
 .kategorije-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+    float: left;
+    clear: both;
+    margin-left: 130px;
 }
 
 .kategorija-container {
-    flex: 1 1 200px;
+    width: 200px;
     max-width: 250px;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
     text-align: center;
     background-color: white;
+    float: left;
+    margin: 10px;
+    
 }
 
 .kategorija-container img {
@@ -48,31 +50,39 @@ body {
     background-color: #45a049;
 }
 
+
 .admin-btna {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    margin: 24px 0;
+  text-align: center;
+    margin-top: 30px;
 }
 
 .admin-btna button {
     padding: 8px 18px;
     border: none;
     border-radius: 4px;
-    font-size: 1em;
+    font-size: 100%;
     cursor: pointer;
+    margin:auto;
 }
-.brisi-vprasanja{
+
+.brisi-vprasanja {
     background-color: red;
     color: white;
+    display: inline-block;
+    margin: 10px;
 }
-.brisi-vprasanja:hover{
+
+.brisi-vprasanja:hover {
     background-color: rgb(225, 7, 7);
 }
-.dodaj-vprasanja{
+
+.dodaj-vprasanja {
     background-color: rgb(61, 206, 223);
     color: white;
+    display: inline-block;
+    margin: 10px;
 }
-.dodaj-vprasanja:hover{
+
+.dodaj-vprasanja:hover {
     background-color: rgb(52, 175, 189);
 }

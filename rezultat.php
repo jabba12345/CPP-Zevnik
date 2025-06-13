@@ -112,7 +112,7 @@ foreach ($vprasanja_ids as $id_v) {
     }
 }
 
-$procenti = $max_tocke > 0 ? round(($dobljene_tocke / $max_tocke) * 100) : 0;
+$procenti = round(($dobljene_tocke / $max_tocke) * 100);
 
 
 ?>

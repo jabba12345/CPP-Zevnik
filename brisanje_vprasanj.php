@@ -86,12 +86,16 @@ if (mysqli_num_rows($admin_result) == 0) {
                 <input type="submit" name="zbrisi_vse" value="Zbriši vsa vprašanja">
             </form>
         </div>
+        <div class="search">
+            <input type="text" name="search" placeholder="Poišči vprasanje">
+        </div>
         <div class="tabela-container">
             <table class="tabela-vprasanja">
                 <tr>
                     <th>ID vprašanja</th>
                     <th>Vprašanje</th>
                     <th>Izbriši vprašanje</th>
+                    <th>Urejanje Vprasanj</th>
                 </tr>
                 <?php
                     while($row = mysqli_fetch_array($result)){
@@ -103,6 +107,12 @@ if (mysqli_num_rows($admin_result) == 0) {
                                 <form method="post" action="" class="gumb-brisanje-posamezno">
                                     <input type="hidden" name="vprasanja_id" value="<?php echo htmlspecialchars($row['vprasanja_id']); ?>">
                                     <input type="submit" name="zbrisi" value="Zbriši">
+                                </form>
+                            </td>
+                            <td>
+                                <form method="post" action="uredi-vprasanja.php" class="gumb-urejanje-posamezno">
+                                    <input type="hidden" name="vprasanja_id" value="<?php echo htmlspecialchars($row['vprasanja_id']); ?>">
+                                    <input type="submit" name="Uredi" value="Uredi" style="background-color: #47e1f6;">
                                 </form>
                             </td>
                         </tr>
