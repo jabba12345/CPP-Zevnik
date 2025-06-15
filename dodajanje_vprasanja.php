@@ -79,8 +79,6 @@ if ($_FILES['slika'] && $_FILES['slika']['error'] === UPLOAD_ERR_OK) {
     $imgData = mysqli_real_escape_string($link, $imgData);
     $slika_sql = "INSERT INTO slike (vprasanja_id, slika) VALUES ($vprasanje_id, '$imgData')";
     $result=mysqli_query($link, $slika_sql);
-
-    
 }
 
 header("Location: dodajanje_vprasanja.php?success=1");
@@ -195,4 +193,9 @@ exit();
         </div>
     </form>
 </body>
+<footer>
+    <?php
+        include_once 'noga.php';
+    ?>
+</footer>
 </html>

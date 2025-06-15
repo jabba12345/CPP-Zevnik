@@ -56,7 +56,7 @@ body {
     background: #b3e5fc;
 }
 
-/* RDEČI GUMBI - splošno pravilo */
+
 .gumb-brisanje-vse input[type="submit"],
 .gumb-brisanje-posamezno input[type="submit"] {
     background: #e74c3c;

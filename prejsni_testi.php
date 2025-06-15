@@ -103,4 +103,9 @@ $rezultat = mysqli_query($link, $poizvedba);
 </table>
 
 </body>
+<footer>
+    <?php
+        include_once 'noga.php';
+    ?>
+</footer>
 </html>

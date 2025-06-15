@@ -126,99 +126,86 @@ $procenti = round(($dobljene_tocke / $max_tocke) * 100);
     <link rel="stylesheet" href="rezultat.css"> 
 </head>
 <body>
-    <h1>Vaš rezultat: <?php echo $procenti; ?>%</h1>
-    <p>Pravilno odgovorjenih vprašanj: <?php echo $pravilni_odgovori; ?> od <?php echo count($vprasanja_ids); ?></p>
-    <p>Točke: <?php echo $dobljene_tocke; ?> / <?php echo $max_tocke; ?></p>
-    <p>Kategorija: <?php $kategorija_id?></p>
-    <form>
-        <?php foreach ($vprasanja_ids as $id_v): ?>
-            <?php
-            $id_v = (int)$id_v;
 
-            
-            $vprasanje_sql = "SELECT v.vprasanje, t.ime AS tip_vprasanja 
-                            FROM vprasanja v
-                            LEFT JOIN tipi_vprasanja t ON v.tipi_vprasanja_id = t.tipi_vprasanja_id
-                            WHERE v.vprasanja_id = $id_v";
-            $vprasanje_result = mysqli_query($link, $vprasanje_sql);
-            $vprasanje_data = mysqli_fetch_array($vprasanje_result);
+<?php
+echo '<h1>Vaš rezultat: ' . $procenti . '%</h1>';
+echo '<p>Pravilno odgovorjenih vprašanj: ' . $pravilni_odgovori . ' od ' . count($vprasanja_ids) . '</p>';
+echo '<p>Točke: ' . $dobljene_tocke . ' / ' . $max_tocke . '</p>';
+echo '<p>Kategorija: ' . $kategorija_id . '</p>';
+echo '<form>';
 
-            
-            $odgovori_sql = "SELECT odgovori_id, odgovor, je_pravilen 
-                            FROM odgovori 
-                            WHERE vprasanja_id = $id_v";
-            $odgovori_result = mysqli_query($link, $odgovori_sql);
+foreach ($vprasanja_ids as $id_v) {
+    $id_v = (int)$id_v;
 
-    
-            $izbrani_sql = "SELECT odgovori_id 
-                            FROM odgovori_uporabnikov 
-                            WHERE vprasanja_id = $id_v AND uporabniki_id = $id_uporabnika AND testi_id = $test_id";
-            $izbrani_result = mysqli_query($link, $izbrani_sql);
-            $izbrani_odgovori = [];
-            while ($row = mysqli_fetch_array($izbrani_result)) {
-                $izbrani_odgovori[] = $row['odgovori_id'];
-            }
-            ?>
+    $vprasanje_sql = "SELECT v.vprasanje, t.ime AS tip_vprasanja 
+                    FROM vprasanja v
+                    LEFT JOIN tipi_vprasanja t ON v.tipi_vprasanja_id = t.tipi_vprasanja_id
+                    WHERE v.vprasanja_id = $id_v";
+    $vprasanje_result = mysqli_query($link, $vprasanje_sql);
+    $vprasanje_data = mysqli_fetch_array($vprasanje_result);
 
-            <div>
-                <h3><?php echo htmlspecialchars($vprasanje_data['vprasanje']); ?></h3>
-                <?php while ($odgovor = mysqli_fetch_array($odgovori_result)): ?>
-                    <div>
-                        <?php
-                        $is_checked = in_array($odgovor['odgovori_id'], $izbrani_odgovori);
-                        $class = '';
-                        if ($is_checked && $odgovor['je_pravilen']) {
-                            $class = 'pravilno'; 
-                        } elseif ($is_checked && !$odgovor['je_pravilen']) {
-                            $class = 'nepravilno'; 
-                        } elseif (!$is_checked && $odgovor['je_pravilen']) {
-                            $class = 'pravilen-odgovor'; 
-                        }
-                        ?>
-                        <?php if ($vprasanje_data['tip_vprasanja'] == 1): ?>
-                            
-                            <input type="radio" 
-                                name="vprasanje_<?php echo $id_v; ?>" 
-                                value="<?php echo $odgovor['odgovori_id']; ?>" 
-                                id="odgovor_<?php echo $odgovor['odgovori_id']; ?>" 
-                                disabled <?php echo $is_checked ? 'checked' : ''; ?>>
-                        <?php elseif ($vprasanje_data['tip_vprasanja'] == 2): ?>
-                            
-                            <input type="checkbox" 
-                                name="vprasanje_<?php echo $id_v; ?>[]" 
-                                value="<?php echo $odgovor['odgovori_id']; ?>" 
-                                id="odgovor_<?php echo $odgovor['odgovori_id']; ?>" 
-                                disabled <?php echo $is_checked ? 'checked' : ''; ?>>
-                        <?php endif; ?>
-                        <label for="odgovor_<?php echo $odgovor['odgovori_id']; ?>" class="<?php echo $class; ?>">
-                            <?php echo htmlspecialchars($odgovor['odgovor']); ?>
-                        </label>
-                    </div>
-                <?php endwhile; ?>
+    $odgovori_sql = "SELECT odgovori_id, odgovor, je_pravilen 
+                    FROM odgovori 
+                    WHERE vprasanja_id = $id_v";
+    $odgovori_result = mysqli_query($link, $odgovori_sql);
 
-            
-                <p class="pravilen-odgovor">
-                    Pravilen odgovor: 
-                    <?php
-                    $pravilni_odgovori_sql = "SELECT odgovor 
-                                            FROM odgovori 
-                                            WHERE vprasanja_id = $id_v AND je_pravilen = 1";
-                    $pravilni_odgovori_result = mysqli_query($link, $pravilni_odgovori_sql);
-                    $pravilni_odgovori = [];
-                    while ($row = mysqli_fetch_array($pravilni_odgovori_result)) {
-                        $pravilni_odgovori[] = htmlspecialchars($row['odgovor']);
-                    }
-                    echo implode(', ', $pravilni_odgovori);
-                    ?>
-                </p>
-            </div>
-        <?php endforeach; ?>
-    </form>
+    $izbrani_sql = "SELECT odgovori_id 
+                    FROM odgovori_uporabnikov 
+                    WHERE vprasanja_id = $id_v AND uporabniki_id = $id_uporabnika AND testi_id = $test_id";
+    $izbrani_result = mysqli_query($link, $izbrani_sql);
+    $izbrani_odgovori = [];
+    while ($row = mysqli_fetch_array($izbrani_result)) {
+        $izbrani_odgovori[] = $row['odgovori_id'];
+    }
 
-    <div style="text-align: center; margin-top: 20px;">
+    echo '<div>';
+    echo '<h3>' . htmlspecialchars($vprasanje_data['vprasanje']) . '</h3>';
+
+    while ($odgovor = mysqli_fetch_array($odgovori_result)) {
+        $is_checked = in_array($odgovor['odgovori_id'], $izbrani_odgovori);
+        $class = '';
+
+        if ($is_checked && $odgovor['je_pravilen']) {
+            $class = 'pravilno';
+        } elseif ($is_checked && !$odgovor['je_pravilen']) {
+            $class = 'nepravilno';
+        } elseif (!$is_checked && $odgovor['je_pravilen']) {
+            $class = 'pravilen-odgovor';
+        }
+
+        echo '<div>';
+
+        if ($vprasanje_data['tip_vprasanja'] == 1) {
+            echo '<input type="radio" name="vprasanje_' . $id_v . '" value="' . $odgovor['odgovori_id'] . '" id="odgovor_' . $odgovor['odgovori_id'] . '" disabled ' . ($is_checked ? 'checked' : '') . '>';
+        } else if ($vprasanje_data['tip_vprasanja'] == 2) {
+            echo '<input type="checkbox" name="vprasanje_' . $id_v . '[]" value="' . $odgovor['odgovori_id'] . '" id="odgovor_' . $odgovor['odgovori_id'] . '" disabled ' . ($is_checked ? 'checked' : '') . '>';
+        }
+
+        echo '<label for="odgovor_' . $odgovor['odgovori_id'] . '" class="' . $class . '">' . htmlspecialchars($odgovor['odgovor']) . '</label>';
+        echo '</div>';
+    }
+
+    // Izpiši pravilne odgovore
+    $pravilni_odgovori_sql = "SELECT odgovor FROM odgovori WHERE vprasanja_id = $id_v AND je_pravilen = 1";
+    $pravilni_odgovori_result = mysqli_query($link, $pravilni_odgovori_sql);
+    $pravilni_odgovori = [];
+    while ($row = mysqli_fetch_array($pravilni_odgovori_result)) {
+        $pravilni_odgovori[] = htmlspecialchars($row['odgovor']);
+    }
+
+    echo '<p class="pravilen-odgovor">Pravilen odgovor: ' . implode(', ', $pravilni_odgovori) . '</p>';
+    echo '</div>';
+}
+
+echo '</form>';
+
+echo '<div style="text-align: center; margin-top: 20px;">
         <a href="index.php" style="text-decoration: none;">
             <button type="button" style="padding: 10px 20px; background-color: #2196F3; color: white; border: none; border-radius: 5px; cursor: pointer;">Nazaj na izbiro kategorije</button>
         </a>
-    </div>
+    </div>';
+?>
+
 </body>
 </html>
+

@@ -123,4 +123,9 @@ if (mysqli_num_rows($admin_result) == 0) {
         </div>
     </div>
 </body>
+<footer>
+    <?php
+        include_once 'noga.php';
+    ?>
+</footer>
 </html>

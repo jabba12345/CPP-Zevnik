@@ -1,100 +1,82 @@
-
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
+    background: lightgray;
+    color: black;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
 }
-
 
 h1 {
     text-align: center;
-    color: #4CAF50;
+    color: green;
     margin-top: 20px;
 }
 
-
 p {
     text-align: center;
-    font-size: 1.2em;
+    font-size: 16px;
     margin: 10px 0;
 }
 
 form {
-    max-width: 800px;
+    width: 600px;
     margin: 20px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-
-}
-
-
-form > div {
-    margin-bottom: 20px;
+    background: white;
     padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #efeded;
+    border: 1px solid gray;
+    border-radius: 5px;
 }
 
-
-form h3 {
-    margin: 0 0 10px;
-    color: #333;
+div {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #eee;
+    border-radius: 5px;
 }
 
+h3 {
+    margin-bottom: 10px;
+}
 
 .pravilno {
-    color: #4CAF50;
+    color: green;
     font-weight: bold;
+    text-align: center;
 }
-
 
 .nepravilno {
-    color: #F44336;
+    color: red;
     font-weight: bold;
 }
 
-
 .pravilen-odgovor {
-    color: #4CAF50;
+    color: green;
     font-style: italic;
     margin-top: 10px;
+    font-size: 14px;
 }
-
 
 input[type="radio"],
 input[type="checkbox"] {
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 label {
-    font-size: 1em;
-    cursor: default;
-}
-
-
-form p.pravilen-odgovor {
-    margin: 10px 0 0;
-    font-size: 0.9em;
+    font-size: 14px;
 }
 
 button {
-    display: block;
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;
+    background: green;
     color: white;
     border: none;
-    border-radius: 5px;
-    font-size: 1.2em;
+    font-size: 16px;
     cursor: pointer;
+    border-radius: 4px;
     margin-top: 20px;
 }
 
 button:hover {
-    background-color: #45a049;
+    background: darkgreen;
 }

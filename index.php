@@ -66,7 +66,7 @@ $result = mysqli_query($link, $sql);
     if (mysqli_num_rows($result) > 0) {
     echo '<div class="admin-btna">
         <button class="dodaj-vprasanja" onclick="location.href=\'dodajanje_vprasanja.php\'">Dodaj Vprasanja</button>
-        <button class="brisi-vprasanja" onclick="location.href=\'brisanje_vprasanj.php\'">Zbrisi vprasanja</button>
+        <button class="brisi-vprasanja" onclick="location.href=\'brisanje_vprasanj.php\'">Uredi vprasanja</button>
     </div>';
     }
 ?>

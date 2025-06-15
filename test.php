@@ -36,62 +36,65 @@ if ($kategorija_id > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="test.css">
     <title>Test</title>
-
 </head>
 
 <body>
 <form action="rezultat.php?kategorija=<?php echo $kategorija_id; ?>" method="POST">
 
-        <?php if (!empty($vprasanja)): ?>
-            <?php while($vprasanje = mysqli_fetch_array($vprasanja)): ?>
-    <div class="vprasanje">
-        <input type="hidden" name="vprasanja_ids[]" value="<?php echo $vprasanje['vprasanja_id']; ?>">
+<?php
+if (!empty($vprasanja)) {
 
-        <h3><?php echo $vprasanje['vprasanje']; ?></h3>
-        <?php if ($vprasanje['slika']): ?>
-            <img src="data:image/png;base64,<?php echo base64_encode($vprasanje['slika']); ?>" alt="Slika">
-        <?php endif; ?>
+    while ($vprasanje = mysqli_fetch_array($vprasanja)) {
+        echo '<div class="vprasanje">';
+        echo '<input type="hidden" name="vprasanja_ids[]" value="' . $vprasanje['vprasanja_id'] . '">';
 
-        <?php 
+        echo '<h3>' . $vprasanje['vprasanje'] . '</h3>';
+
+        if ($vprasanje['slika']) {
+            $slika = base64_encode($vprasanje['slika']);
+            echo '<img src="data:image/png;base64,' . $slika . '" alt="Slika">';
+        }
+
         $vprasanje_id = $vprasanje['vprasanja_id'];
         $tip_id = $vprasanje['tipi_vprasanja_id'];
+
         $odgovori_sql = "SELECT * FROM odgovori WHERE vprasanja_id = $vprasanje_id ORDER BY RAND()";
         $odgovori_result = mysqli_query($link, $odgovori_sql);
         $odgovori = [];
+
         while ($odgovor = mysqli_fetch_array($odgovori_result)) {
             $odgovori[] = $odgovor;
         }
-        ?>
 
-        <?php foreach($odgovori as $odgovor): ?>
-    
-            <input type="hidden" name="odgovori_id[]" value="<?php echo $odgovor['odgovori_id']; ?>">
-            <div>
-                <?php if ($tip_id == 1): ?>
-                    <input type="radio" 
-                        name="vprasanje_<?php echo $vprasanje_id; ?>" 
-                        value="<?php echo $odgovor['odgovori_id']; ?>" 
-                        id="odgovor_<?php echo $odgovor['odgovori_id']; ?>">
-                <?php elseif ($tip_id == 2): ?>
-                    <input type="checkbox" 
-                        name="vprasanje_<?php echo $vprasanje_id; ?>[]" 
-                        value="<?php echo $odgovor['odgovori_id']; ?>" 
-                        id="odgovor_<?php echo $odgovor['odgovori_id']; ?>">
-                <?php endif; ?>
-                <label for="odgovor_<?php echo $odgovor['odgovori_id']; ?>">
-                    <?php echo $odgovor['odgovor']; ?>
-                </label>
-            </div>
-        <?php endforeach; ?>
-    </div>
-<?php endwhile; ?>
+        foreach ($odgovori as $odgovor) {
+            echo '<input type="hidden" name="odgovori_id[]" value="' . $odgovor['odgovori_id'] . '">';
+            echo '<div>';
 
-        <?php else: ?>
-            <p>Ni vprašanj za izbrano kategorijo.</p>
-        <?php endif; ?>
+            if ($tip_id == 1) {
+                echo '<input type="radio" 
+                    name="vprasanje_' . $vprasanje_id . '" 
+                    value="' . $odgovor['odgovori_id'] . '" 
+                    id="odgovor_' . $odgovor['odgovori_id'] . '">';
+            } else if ($tip_id == 2) {
+                echo '<input type="checkbox" 
+                    name="vprasanje_' . $vprasanje_id . '[]" 
+                    value="' . $odgovor['odgovori_id'] . '" 
+                    id="odgovor_' . $odgovor['odgovori_id'] . '">';
+            }
 
-        
-        <input type="submit" value="Oddaj test">
-    </form>
+            echo '<label for="odgovor_' . $odgovor['odgovori_id'] . '">' . $odgovor['odgovor'] . '</label>';
+            echo '</div>';
+        }
+
+        echo '</div>';
+    }
+
+} else {
+    echo '<p>Ni vprašanj za izbrano kategorijo.</p>';
+}
+?>
+
+    <input type="submit" value="Oddaj test">
+</form>
 </body>
 </html>
