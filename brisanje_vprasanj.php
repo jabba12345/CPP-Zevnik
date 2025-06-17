@@ -3,9 +3,8 @@ require_once "povezava.php";
 include_once "seja.php";
 
 
-
 $vprasanja_sql = "SELECT v.vprasanja_id, v.vprasanje FROM vprasanja v";
-$result = mysqli_query($link, $vprasanja_sql);
+$vprasanja_result = mysqli_query($link, $vprasanja_sql);
 
 if (isset($_POST['zbrisi_vse'])) {
     $sql = "DELETE FROM odgovori_uporabnikov";
@@ -63,9 +62,9 @@ if (isset($_POST['zbrisi'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="brisanje_vprasanj.css">
+    <link rel="stylesheet" href="style.css">
     <title>Brisanje vprašanj</title>
-    <button class="nazaj"onclick="location.href='index.php'">Nazaj</button>
+    
 </head>
 <body>
     <?php include_once 'glava.php'; 
@@ -79,10 +78,10 @@ if (mysqli_num_rows($admin_result) == 0) {
     exit(); 
 }
     ?>
-    <div class="container">
-        <h2 class="naslov">Brisanje vprašanj</h2>
+    <div class="brisanje_container">
+        <h2 class="brisanje_naslov">Brisanje vprašanj</h2>
         <div class="gumb-brisanje-vse">
-            <form method="post" action="">
+            <form method="post" action="brisanje_vprasanj.php">
                 <input type="submit" name="zbrisi_vse" value="Zbriši vsa vprašanja">
             </form>
         </div>
@@ -92,33 +91,36 @@ if (mysqli_num_rows($admin_result) == 0) {
         <div class="tabela-container">
             <table class="tabela-vprasanja">
                 <tr>
-                    <th>ID vprašanja</th>
-                    <th>Vprašanje</th>
-                    <th>Izbriši vprašanje</th>
-                    <th>Urejanje Vprasanj</th>
+                    <th class="brisanje_th">ID vprašanja</th>
+                    <th class="brisanje_th">Vprašanje</th>
+                    <th class="brisanje_th">Izbriši vprašanje</th>
+                    <th class="brisanje_th">Urejanje Vprasanj</th>
                 </tr>
                 <?php
-                    while($row = mysqli_fetch_array($result)){
-                ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($row['vprasanja_id']); ?></td>
-                            <td><?php echo htmlspecialchars($row['vprasanje']); ?></td>
-                            <td>
-                                <form method="post" action="" class="gumb-brisanje-posamezno">
-                                    <input type="hidden" name="vprasanja_id" value="<?php echo htmlspecialchars($row['vprasanja_id']); ?>">
-                                    <input type="submit" name="zbrisi" value="Zbriši">
-                                </form>
-                            </td>
-                            <td>
-                                <form method="post" action="uredi-vprasanja.php" class="gumb-urejanje-posamezno">
-                                    <input type="hidden" name="vprasanja_id" value="<?php echo htmlspecialchars($row['vprasanja_id']); ?>">
-                                    <input type="submit" name="Uredi" value="Uredi" style="background-color: #47e1f6;">
-                                </form>
-                            </td>
-                        </tr>
-                <?php
-                    }
-                ?>
+            
+            if ($vprasanja_result && mysqli_num_rows($vprasanja_result) > 0) {
+                while ($row = mysqli_fetch_array($vprasanja_result)) {
+                    echo "<tr>
+                        <td>" . htmlspecialchars($row['vprasanja_id']) . "</td>
+                        <td>" . htmlspecialchars($row['vprasanje']) . "</td>
+                    <td>
+                        <form method='post' action='' class='gumb-brisanje-posamezno'>
+                            <input type='hidden' name='vprasanja_id' value='" . htmlspecialchars($row['vprasanja_id']) . "'>
+                            <input type='submit' name='zbrisi' value='Zbriši'>
+                        </form>
+                    </td>
+
+                    <td>
+                        <form method='post' action='uredi-vprasanja.php' class='gumb-urejanje-posamezno'>
+                            <input type='hidden' name='vprasanja_id' value='" . htmlspecialchars($row['vprasanja_id']) . "'>
+                            <input type='submit' name='Uredi' value='Uredi' style='background-color: #47e1f6;'>
+                        </form>
+                    </td>
+            </tr>";
+                }
+            }
+?>
+
             </table>
         </div>
     </div>

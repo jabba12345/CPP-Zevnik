@@ -44,68 +44,54 @@ $rezultat = mysqli_query($link, $poizvedba);
 <html>
 <head>
     <title>Prejšnji testi</title>
-    <link rel="stylesheet" href="prejsni_test.css"> 
-    <button class="nazaj"onclick="location.href='index.php'">Nazaj</button>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <?php include_once 'glava.php'; ?>
-<h2>Prejšnji testi</h2>
+    <?php include_once 'glava.php'; ?>
 
+    <h2 class="prejsni_testi">Prejšnji testi</h2>
 
-<a href="test.php?kategorija=<?php echo $kategorija_id; ?>" style="text-decoration: none;">
-    <button>Reši test</button>
-</a>
+    <a href="test.php?kategorija=<?php echo $kategorija_id; ?>" style="text-decoration: none;">
+        <button class="resi_test">Reši test</button>
+    </a>
 
+    <table border="1" cellpadding="10" class="tabela-prejsnji-test">
+        <tr>
+            <th>Datum</th>
+            <th>Točke</th>
+            <th>Procent</th>
+            <th>Status</th>
+        </tr>
 
-<table border="1" cellpadding="10">
-    <tr>
-        <th>Datum</th>
-        <th>Točke</th>
-        <th>Procent</th>
-        <th>Status</th>
-    </tr>
+        <?php
+        while ($vrstica = mysqli_fetch_array($rezultat)) {
+            $datum = $vrstica['datum_cas'];
+            $tocke = $vrstica['dosezene_tocke'];
+            $max_tocke = $vrstica['max_tocke'];
+            $procent = 0;
 
-    <?php
-    while ($vrstica = mysqli_fetch_array($rezultat)) {
-        $datum = $vrstica['datum_cas'];
-        $tocke = $vrstica['dosezene_tocke'];
-        $max_tocke = $vrstica['max_tocke'];
-        $procent = 0;
+            if ($max_tocke > 0) {
+              $procent = ($tocke / $max_tocke) * 100;
+            }
 
-        if ($max_tocke > 0) {
-            $procent = ($tocke / $max_tocke) * 100;
+            if($procent >= 88){
+                $status = "Opravil";
+            } else {
+                $status = "Ni opravil";
+            }
+
+            echo "<tr>";
+            echo "<td>$datum</td>";
+            echo "<td>" . round($tocke, 2) . " / " . round($max_tocke, 2) . "</td>";
+            echo "<td>" . round($procent, 2) . "%</td>";
+            echo "<td>$status</td>";
+            echo "</tr>";
         }
-
-        if($procent>=88){
-            $status_class="status-opravil";
-        }else{
-            $status_class="status-ni-opravil";
-        }
-
-        if($procent>=88){
-            $status="Opravil";
-        }else{
-            $status="Ni opravil";
-        }
-
-        
-
-        echo "<tr>";
-        echo "<td>$datum</td>";
-        echo "<td>" . round($tocke, 2) . " / " . round($max_tocke, 2) . "</td>";
-        echo "<td>" . round($procent, 2) . "%</td>";
-        echo "<td>$status</td>";
-        echo "</tr>";
-    }
-    ?>
-
-</table>
-
+        ?>
+    </table>
 </body>
 <footer>
-    <?php
-        include_once 'noga.php';
-    ?>
+    <?php include_once 'noga.php'; ?>
 </footer>
 </html>
+

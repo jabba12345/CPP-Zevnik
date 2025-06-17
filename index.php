@@ -9,25 +9,18 @@ if (isset($_GET['kategorija'])) {
 
 
 
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="sl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="style.css">
     <title>Izbira kategorije vozila</title>
+    <?php include_once 'glava.php';?>
 </head>
 <body>
-<?php include_once 'glava.php'; 
-$uporabnik_id= $_SESSION['idu'];
-$sql = "SELECT * FROM uporabniki WHERE uporabniki_id = $uporabnik_id AND tip_uporabnika_id = 1";
-$result = mysqli_query($link, $sql);
-?>
-    <div class="header">
+    <div class="kategorija-h1">
         <h1>Izberite kategorijo vozila</h1>
     </div>
     
@@ -62,14 +55,7 @@ $result = mysqli_query($link, $sql);
     
 
 </div>
-<?php
-    if (mysqli_num_rows($result) > 0) {
-    echo '<div class="admin-btna">
-        <button class="dodaj-vprasanja" onclick="location.href=\'dodajanje_vprasanja.php\'">Dodaj Vprasanja</button>
-        <button class="brisi-vprasanja" onclick="location.href=\'brisanje_vprasanj.php\'">Uredi vprasanja</button>
-    </div>';
-    }
-?>
+
 
 </body>
 <footer>

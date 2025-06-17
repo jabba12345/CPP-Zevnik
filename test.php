@@ -1,6 +1,7 @@
 <?php 
-require_once "povezava.php";
 include_once 'seja.php';
+require_once "povezava.php";
+
 
 $kategorija_id = isset($_GET['kategorija']) ? $_GET['kategorija'] : 0;
 
@@ -17,10 +18,10 @@ if ($kategorija_id > 0) {
     $vprasanja = mysqli_query($link, $vprasanja_sql);
 
 
-    $vprasanja_ids = [];
+    $_SESSION['idv'] = [];
     if ($vprasanja) {
         while ($row = mysqli_fetch_array($vprasanja)) {
-            $vprasanja_ids[] = $row['vprasanja_id'];
+            $_SESSION['idv'][] = $row['vprasanja_id'];
         }
         
         mysqli_data_seek($vprasanja, 0);
@@ -39,14 +40,14 @@ if ($kategorija_id > 0) {
 </head>
 
 <body>
-<form action="rezultat.php?kategorija=<?php echo $kategorija_id; ?>" method="POST">
+<form action="rezultat.php?kategorija=<?php echo $kategorija_id; ?>" method="POST" class="uredi-form">
 
 <?php
 if (!empty($vprasanja)) {
 
     while ($vprasanje = mysqli_fetch_array($vprasanja)) {
         echo '<div class="vprasanje">';
-        echo '<input type="hidden" name="vprasanja_ids[]" value="' . $vprasanje['vprasanja_id'] . '">';
+        
 
         echo '<h3>' . $vprasanje['vprasanje'] . '</h3>';
 
@@ -60,14 +61,12 @@ if (!empty($vprasanja)) {
 
         $odgovori_sql = "SELECT * FROM odgovori WHERE vprasanja_id = $vprasanje_id ORDER BY RAND()";
         $odgovori_result = mysqli_query($link, $odgovori_sql);
-        $odgovori = [];
-
+        $_SESSION['ido'][$vprasanje_id] = [];
         while ($odgovor = mysqli_fetch_array($odgovori_result)) {
-            $odgovori[] = $odgovor;
+            $_SESSION['ido'][$vprasanje_id][] = $odgovor;
         }
 
-        foreach ($odgovori as $odgovor) {
-            echo '<input type="hidden" name="odgovori_id[]" value="' . $odgovor['odgovori_id'] . '">';
+        foreach ($_SESSION['ido'][$vprasanje_id] as $odgovor) {
             echo '<div>';
 
             if ($tip_id == 1) {
@@ -84,7 +83,7 @@ if (!empty($vprasanja)) {
 
             echo '<label for="odgovor_' . $odgovor['odgovori_id'] . '">' . $odgovor['odgovor'] . '</label>';
             echo '</div>';
-        }
+}
 
         echo '</div>';
     }

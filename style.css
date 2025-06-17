@@ -1,0 +1,469 @@
+/*Index*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.kategorija-h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.kategorije-wrapper {
+    float: left;
+    clear: both;
+    margin-left: 20%;
+}
+
+.kategorija-container {
+    width: 200px;
+    max-width: 250px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    background-color: white;
+    float: left;
+    margin: 10px;
+}
+
+.kategorija-container img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.kategorija-container button {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.kategorija-container button:hover {
+    background-color: #45a049;
+}
+
+/*Glava*/
+
+.glava{
+    background-color: #333;
+    width: 100%;
+    height: 90px;
+    
+}
+#ime{
+    text-align: center;
+    color: rgb(247, 243, 243);
+    font-weight: bold;
+}
+#odjava{
+    float: right;
+
+    border-radius: 5px;
+    background-color: #eb0000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    width: 100px;
+    height: 35px;
+    margin-right: 5px;
+}
+#dodaj{
+    float: right;
+    margin-right: 15px;
+
+    border-radius: 5px;
+    background-color: #35d0ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    width: 100px;
+    height: 35px;
+    
+}
+#brisi{
+    float:left;
+    margin-right: 15px;
+
+    border-radius: 5px;
+    background-color: #ff9100;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    width: 100px;
+    height: 35px;
+    margin-left: 5px;
+}
+#domov{
+    display: block;
+
+    border-radius: 5px;
+    background-color: #970cf3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    width: 100px;
+    height: 35px;
+}
+
+#dodaj:hover{
+    background-color: #27a1ca;
+}
+#brisi:hover{
+    background-color: #aa5c03;
+}
+#domov:hover{
+    background-color: #641fa5;
+}
+#odjava:hover{
+    background-color: #bb1818;
+}
+
+/*Prejsni testi*/
+.prejsni_testi {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+}
+
+.resi_test {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #2e852d;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 1.1em;
+    cursor: pointer;
+    text-align: center;
+    width: 200px;
+}
+
+.resi_test:hover {
+    background-color: #1a5b20;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+table th {
+    background-color: #2e852d;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    font-size: 1em;
+}
+
+table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+
+/*Brisanje*/
+.brisanje_container {
+    max-width: 600px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 16px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.brisanje_naslov {
+    text-align: center;
+    margin-bottom: 18px;
+    color: #222;
+}
+
+.tabela-vprasanja {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.tabela-vprasanja th,
+.tabela-vprasanja td {
+    border: 1px solid #ccc;
+    padding: 7px;
+    text-align: left;
+    font-size: 15px;
+}
+
+.tabela-vprasanja th {
+    background: #f2f2f2;
+}
+
+
+.gumb-brisanje-vse input[type="submit"],
+.gumb-brisanje-posamezno input[type="submit"] {
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.gumb-brisanje-vse input[type="submit"]:hover,
+.gumb-brisanje-posamezno input[type="submit"]:hover {
+    background: #b71c1c;
+}
+
+.gumb-urejanje-posamezno input[type="submit"] {
+    background: #47e1f6; /* modra */
+    color: #fff;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.gumb-urejanje-posamezno input[type="submit"]:hover {
+    background: #34a7b6;
+}
+.brisanje_th{
+    color: black;
+}
+
+/*Prijava*/
+#prijava_naslov {
+    color: #333;
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+.prijava_container {
+    background: white;
+    padding: 2rem;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    margin-top: 100px;
+
+}
+
+.prijava-label {
+    display: block;
+    color: #555;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.prijava_input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#prijava_gumb {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+#prijava_gumb:hover {
+    background-color: #555;
+}
+
+#registracija_link{
+    display: block;
+    margin-top: 1rem;
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+}
+
+#registracija_link:hover {
+    text-decoration: underline;
+}
+
+
+.error {
+    color: #d32f2f;
+    text-align: center;
+}
+
+/*Registracija*/
+.registracija_container {
+    background: white;
+    padding: 2rem;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.naslov-registracija {
+    color: #333;
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+.registracija_label {
+    color: #555;
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.input-registracija {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+}
+
+.gumb-registracija {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    
+}
+
+.gumb-registracija:hover {
+    background-color: #555;
+}
+
+.povezava-prijava {
+    color: #333;
+    text-decoration: none;
+    text-align: center;
+}
+
+/*Dodajanje vprasanj*/
+
+.container-dodajanje-vprasanj{
+    background: #fff;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.prasanje-label,.tocke_vprasanja_label,.tocke_odgovor_label,.odgovor-label{
+    display: block;
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+input[type="file"] {
+    width: 100%;
+    padding: 6px;
+    font-size: 1em;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+button,
+input[type="submit"] {
+    padding: 10px;
+    font-size: 1em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-btn-dodajanje-vprasanje {
+    width: 100%;
+    background: #4fc3f7;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.submit-btn-dodajanje-vprasanje:hover {
+    background: #0288d1;
+}
+
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+}
+
+/*Test*/
+
+/*Uredi*/
+
+/*Viri*/
+
+li{
+    list-style-type: none;
+}
+.a-viri,.p-viri{
+    font-size: 20px;
+}
+/*Noga*/
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+footer a {
+    color: #66ccff;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: #99ddff;
+}

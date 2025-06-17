@@ -91,16 +91,16 @@ exit();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="dodajanje_vprasanj.css">
-    <script src="dodajanje_vprasanj.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="dodajanje_vprasanj.js"></script>
     <title>Dodajanje Vprasanja</title>
 
-    <button class="nazaj"onclick="location.href='index.php'">Nazaj</button>
+    
 </head>
 <body>
     <?php include_once 'glava.php'; 
 
-      $uporabnik_id = $_SESSION['idu'];
+    $uporabnik_id = $_SESSION['idu'];
 
         $sql = "SELECT * FROM uporabniki WHERE uporabniki_id = $uporabnik_id AND tip_uporabnika_id = 1";
         $result = mysqli_query($link, $sql);
@@ -110,7 +110,7 @@ exit();
         }
     ?>
     <form action="" method="POST" enctype="multipart/form-data">
-        <div class="container">
+        <div class="container-dodajanje-vprasanj">
         
             <div class="vprasanje-row">
                 <label for="vprasanje" class="vprasanje-label">Vprasanje</label> 
@@ -122,7 +122,7 @@ exit();
                 <br>
                 <div id="odgovori-fields">
                     <div class="odgovor-row">
-                    <label for="odgovor1" class>Odgovor1: </label>
+                    <label for="odgovor1" class="odgovor-label">Odgovor1: </label>
                     <input type="text" name="odgovor1" id="odgovor1_id" class="odgovor">
                     <label for="tocke_odgovor" class="tocke_odgovor_label">Tocke</label>
                     <input type="number" name="tocke_odgovor1" id="tocke_odgovor1" class="tocke_odgovor">
@@ -134,7 +134,7 @@ exit();
                     <br>
 
                 <div class="odgovor-row">
-                    <label for="odgovor2" class>Odgovor2: </label>
+                    <label for="odgovor2" class="odgovor-label">Odgovor2: </label>
                     <input type="text" name="odgovor2" id="odgovor2_id" class="odgovor">
                     <label for="tocke_odgovor2" class="tocke_odgovor_label">Tocke</label>
                     <input type="number" name="tocke_odgovor2" id="tocke_odgovor2" class="tocke_odgovor">
@@ -146,7 +146,7 @@ exit();
                     <br>
 
                     <div class="odgovor-row">
-                    <label for="odgovor3" class>Odgovor3: </label>
+                    <label for="odgovor3" class="odgovor-label">Odgovor3: </label>
                     <input type="text" name="odgovor3" id="odgovor3_id" class="odgovor">
                     <label for="tocke_odgovor3" class="tocke_odgovor_label">Tocke</label>
                     <input type="number" name="tocke_odgovor3" id="tocke_odgovor3" class="tocke_odgovor">
@@ -158,7 +158,7 @@ exit();
                     <br>
 
                     <div class="odgovor-row">
-                    <label for="odgovor4" class>Odgovor4: </label>
+                    <label for="odgovor4" class="odgovor-label">Odgovor4: </label>
                     <input type="text" name="odgovor4" id="odgovor4_id" class="odgovor">
                     <label for="tocke_odgovor4" class="tocke_odgovor_label">Tocke</label>
                     <input type="number" name="tocke_odgovor4" id="tocke_odgovor4" class="tocke_odgovor">
@@ -188,7 +188,7 @@ exit();
                 <label for="nalaganje_slik" class="nalaganje_slik">Nalozi sliko (ce je potrbno)</label><br>
                 <input type="file" id="slika_id" name="slika" class="slika-btn" accept="image/*"> <br>'
 
-                <input type="submit" value="Dodaj odgovore" class="submit-btn" name="sub">'
+                <input type="submit" value="Dodaj odgovore" class="submit-btn-dodajanje-vprasanje" name="sub">'
     
         </div>
     </form>

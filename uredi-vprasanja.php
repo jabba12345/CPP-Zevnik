@@ -83,8 +83,7 @@ if (isset($_POST["sub"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="uredi-vprasanja.css">
-    <button class="nazaj"onclick="location.href='brisanje_vprasanj.php'">Nazaj</button>
+    <link rel="stylesheet" href="style.css">
     <title>Urejanje Vprašanj</title>
 </head>
 <body>
@@ -101,15 +100,15 @@ if (isset($_POST["sub"])) {
         <?php
         foreach ($result_odgovori as $odgovor) {
             echo "<div class='odgovor'>";
-            echo "<label>Odgovor:</label>";
-            echo "<input type='hidden' name='odgovori_id[]' value='" . intval($odgovor['odgovori_id'])."'>";
-            echo "<input type='text' name='odgovori[]' value='" . htmlspecialchars($odgovor['odgovor'])."'>";
+            echo "<label class='uredi-label'>Odgovor:</label>";
+            echo "<input type='hidden' name='odgovori_id[]' class='uredi-input' value='" . intval($odgovor['odgovori_id'])."'>";
+            echo "<input type='text' name='odgovori[]' class='uredi-input' value='" . htmlspecialchars($odgovor['odgovor'])."'>";
 
-            echo "<label>Točke odgovora:</label>";
-            echo "<input type='text' name='tocke_odgovora[]' value='" . intval($odgovor['odgovori_tocke'])."'>";
+            echo "<label class='uredi-label'>Točke odgovora:</label>";
+            echo "<input type='text' name='tocke_odgovora[]' class='uredi-input' value='" . intval($odgovor['odgovori_tocke'])."'>";
 
-            echo "<label>Je pravilen:</label>";
-            echo "<select name='je_pravilen[]'>";
+            echo "<label class='uredi-label'>Je pravilen:</label>";
+            echo "<select name='je_pravilen[]' class='uredi-select'>";
             if($odgovor['je_pravilen'] == 1) {
                 echo "<option value='1' selected>Da</option>";
                 echo "<option value='0'>Ne</option>";
@@ -123,8 +122,8 @@ if (isset($_POST["sub"])) {
         }
         ?>
 
-<label for="kategorije">Kategorije:</label>
-<select name="kategorije" id="kategorija_id">
+<label for="kategorije" class="uredi-label">Kategorije:</label>
+<select name="kategorije" id="kategorija_id"class="uredi-select">
     <?php
         foreach($result_kategorija as $kategorija){
             echo "<option value='" . intval($kategorija['kategorije_id']) . "'>" . htmlspecialchars($kategorija['ime']) . "</option>";
@@ -132,12 +131,12 @@ if (isset($_POST["sub"])) {
     ?>
 </select>
 
-        <label for="slika">Trenutna slika:</label>
-        <img src="data:image/png;base64,<?php echo base64_encode($slika); ?>" alt="Slika" style="max-width: 200px; max-height: 200px;">
-        <label for="slika">Spremeni sliko</label>
-        <input type="file" name="slika">
+        <label for="slika" class="uredi-label">Trenutna slika:</label>
+        <img class="uredi-img"src="data:image/png;base64,<?php echo base64_encode($slika); ?>" alt="Slika" style="max-width: 200px; max-height: 200px;">
+        <label for="slika" class="uredi-label">Spremeni sliko</label>
+        <input type="file" name="slika" class="uredi-input">
         
-        <button type="submit" name="sub">Shrani spremembe</button>
+        <button class="uredi-btn" type="submit" name="sub">Shrani spremembe</button>
     </form>
 </body>
 <footer>

@@ -31,30 +31,27 @@ if(isset($_POST['sub'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="prijava.css">
+    <link rel="stylesheet" href="style.css">
     <title>Prijava</title>
 </head>
 <body>
-    <?php if (!empty($ime)): ?>
-        <div class="display_ime"><?php echo htmlspecialchars($ime); ?></div>
-    <?php endif; ?>
 
-    <div class="container">
-        <h1>PRIJAVA</h1>
-        <?php if (!empty($error)): ?>
-            <div class="error"><?php echo htmlspecialchars($error); ?></div>
-        <?php endif; ?>
+    <div class="prijava_container">
+        <h1 id="prijava_naslov">PRIJAVA</h1>
+        <?php if (!empty($error)){
+            echo "<div class='error'>" . htmlspecialchars($error) . "</div>";
+        }?>
 
         <form method="post" action="prijava.php">
-            <label for="mail">E-mail</label>
-            <input type="email" name="mail" id="mail" required>
+            <label for="mail" class="prijava-label">E-mail</label>
+            <input type="email" name="mail" id="mail"class="prijava_input" required>
 
-            <label for="pas">Geslo</label>
-            <input type="password" name="pas" id="pas" required>
+            <label for="pas" class="prijava-label">Geslo</label>
+            <input type="password" name="pas" id="pas" class="prijava_input" required>
 
-            <button type="submit" name="sub">Prijavi se</button>
+            <button type="submit" name="sub" id="prijava_gumb">Prijavi se</button>
         </form>
-        <a href="registracija.php">Registracija</a>
+        <a href="registracija.php" id="registracija_link">Registracija</a>
     </div>
 </body>
 </html>

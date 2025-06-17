@@ -33,31 +33,31 @@ if (isset($_POST['sub'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="registracija.css">
+    <link rel="stylesheet" href="style.css">
     <title>Registracija</title>
-    
 </head>
 <body>
-    <div class="container">
-        <h1>REGISTRACIJA</h1>
+    <div class="registracija_container">
+        <h1 class="naslov-registracija">REGISTRACIJA</h1>
 
-        <?php if (!empty($error)): ?>
-            <div class="error"><?php echo htmlspecialchars($error); ?></div>
-        <?php endif; ?>
+        <?php if (!empty($error)){
+            echo "<div class='error'>" . htmlspecialchars($error) . "</div>";
+        }?>
 
         <form action="registracija.php" method="post">
-            <label for="uporabnisko">Uporabniško ime</label>
-            <input type="text" name="uporabnisko" id="uporabnisko" required maxlength="50">
+            <label for="uporabnisko" class="registracija_label">Uporabniško ime</label>
+            <input type="text" name="uporabnisko" class="input-registracija" required maxlength="50">
 
-            <label for="mail">E-mail</label>
-            <input type="email" name="mail" id="mail" required maxlength="100">
+            <label for="mail" class="registracija_label">E-mail</label>
+            <input type="email" name="mail" class="input-registracija" required maxlength="100">
 
-            <label for="geslo">Geslo</label>
-            <input type="password" name="geslo" id="geslo" required minlength="8">
+            <label for="geslo" class="registracija_label">Geslo</label>
+            <input type="password" name="geslo" class="input-registracija" required minlength="8">
 
-            <button type="submit" name="sub">Registriraj se</button>
+            <button type="submit" name="sub" class="gumb-registracija">Registriraj se</button>
         </form>
-        <a href="prijava.php">Nazaj na prijavo</a>
+        <a href="prijava.php" class="povezava-prijava">Nazaj na prijavo</a>
     </div>
 </body>
 </html>
+
