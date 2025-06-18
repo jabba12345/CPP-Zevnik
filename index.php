@@ -26,28 +26,28 @@ if (isset($_GET['kategorija'])) {
 <div class="kategorije-wrapper">
     
     <div class="kategorije-wrapper">
-    <!--Kategorija A-->
+
     <div class="kategorija-container">
         <img src="Slike/motor.png" alt="Motor">
         <div><p>Kategorija A</p></div>
         <button type="button" onclick="location.href='prejsni_testi.php?kategorija=1'">Izberi</button>
     </div>
     
-    <!--Kategorija B-->
+    
     <div class="kategorija-container">
         <img src="Slike/avto.png" alt="Osebna vozila">
         <div><p>Kategorija B</p></div>
         <button type="button" onclick="location.href='prejsni_testi.php?kategorija=2'">Izberi</button>
     </div>
     
-    <!--Kategorija C-->
+
     <div class="kategorija-container">
         <img src="Slike/tovornjak.png" alt="Tovorna vozila">
         <div><p>Kategorija C</p></div>
         <button type="button" onclick="location.href='prejsni_testi.php?kategorija=3'">Izberi</button>
     </div>
     
-    <!--Kategorija D-->
+
     <div class="kategorija-container">
         <img src="Slike/bus-20.png" alt="Avtobusi">
         <div><p>Kategorija D</p></div>
