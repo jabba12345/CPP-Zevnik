@@ -7,19 +7,23 @@ if(isset($_POST['sub'])){
     $ime = '';
     $mail = mysqli_real_escape_string($link, $_POST['mail']);
     $geslo = mysqli_real_escape_string($link, $_POST['pas']);
-	$geslo2=sha1($geslo);
 
     
-    $sql = "SELECT * FROM uporabniki WHERE email='$mail' AND geslo='$geslo2';";
+    $sql = "SELECT * FROM uporabniki WHERE email='$mail';";
     $result = mysqli_query($link, $sql);
 
     if(mysqli_num_rows($result)===1){
         $row=mysqli_fetch_array($result);
+
+        if (password_verify($geslo, $row['geslo'])){
         $_SESSION['name']=$row['ime'];
         $_SESSION['idu'] = $row['uporabniki_id'];
-        $_SESSION['log']=TRUE;
         $ime=$_SESSION['name'];
 		header("location:index.php");
+        }
+        else {
+            $error = 'Napačno geslo ali email!!!';
+        }
     } else {
         $error = 'Napačno geslo ali email!!!';
     }

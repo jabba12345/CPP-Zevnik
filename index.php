@@ -23,6 +23,7 @@ if (isset($_GET['kategorija'])) {
     <div class="kategorija-h1">
         <h1>Izberite kategorijo vozila</h1>
     </div>
+<div class="kategorije-wrapper">
     
     <div class="kategorije-wrapper">
     <!--Kategorija A-->
@@ -53,7 +54,7 @@ if (isset($_GET['kategorija'])) {
         <button type="button" onclick="location.href='prejsni_testi.php?kategorija=4'">Izberi</button>
     </div> <br>
     
-
+</div>
 </div>
 
 

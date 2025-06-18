@@ -13,9 +13,9 @@ if (isset($_POST['sub'])) {
     $mail = mysqli_real_escape_string($link, $mail);
     $geslo = mysqli_real_escape_string($link, $geslo);
 
-	$geslo2=sha1($geslo);
+	$geslo2 = password_hash($geslo, PASSWORD_DEFAULT); 
 
-    $checkQuery = "SELECT * FROM uporabniki WHERE email='$mail'";
+    $checkQuery = "SELECT * FROM uporabniki WHERE email='$mail'"; 
     $checkResult = mysqli_query($link, $checkQuery);
 
     if (mysqli_num_rows($checkResult) > 0) {

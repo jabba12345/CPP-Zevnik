@@ -114,19 +114,19 @@ exit();
         
             <div class="vprasanje-row">
                 <label for="vprasanje" class="vprasanje-label">Vprasanje</label> 
-                <input type="text" name="vprasanje" id="vprasanje_id" class="vprasanje-input" required>
+                <input type="text" name="vprasanje" id="vprasanje_id" class="dodaj-input" required>
 
                 <label for="tock_vprasanje" class="tocke_vprasanja_label">Tocke:</label>
-                <input type="number" name="tocke_vprasanja" class="tocke_vprasanja">
+                <input type="number" name="tocke_vprasanja" class="dodaj-input">
 </div>
                 <br>
                 <div id="odgovori-fields">
                     <div class="odgovor-row">
                     <label for="odgovor1" class="odgovor-label">Odgovor1: </label>
-                    <input type="text" name="odgovor1" id="odgovor1_id" class="odgovor">
+                    <input type="text" name="odgovor1" id="odgovor1_id" class="dodaj-input">
                     <label for="tocke_odgovor" class="tocke_odgovor_label">Tocke</label>
-                    <input type="number" name="tocke_odgovor1" id="tocke_odgovor1" class="tocke_odgovor">
-                    <select name="pravilen1" id="pravilen1" class="pravilen-select">
+                    <input type="number" name="tocke_odgovor1" id="tocke_odgovor1" class="dodaj-input">
+                    <select name="pravilen1" id="pravilen1" class="dodaj-select">
                         <option value="0">False</option>
                         <option value="1">True</option>
                     </select>
@@ -135,10 +135,10 @@ exit();
 
                 <div class="odgovor-row">
                     <label for="odgovor2" class="odgovor-label">Odgovor2: </label>
-                    <input type="text" name="odgovor2" id="odgovor2_id" class="odgovor">
+                    <input type="text" name="odgovor2" id="odgovor2_id" class="dodaj-input">
                     <label for="tocke_odgovor2" class="tocke_odgovor_label">Tocke</label>
-                    <input type="number" name="tocke_odgovor2" id="tocke_odgovor2" class="tocke_odgovor">
-                    <select name="pravilen2" id="pravilen2" class="pravilen-select">
+                    <input type="number" name="tocke_odgovor2" id="tocke_odgovor2" class="dodaj-input">
+                    <select name="pravilen2" id="pravilen2" class="dodaj-select">
                         <option value="0">False</option>
                         <option value="1">True</option>
                     </select>
@@ -147,10 +147,10 @@ exit();
 
                     <div class="odgovor-row">
                     <label for="odgovor3" class="odgovor-label">Odgovor3: </label>
-                    <input type="text" name="odgovor3" id="odgovor3_id" class="odgovor">
+                    <input type="text" name="odgovor3" id="odgovor3_id" class="dodaj-input">
                     <label for="tocke_odgovor3" class="tocke_odgovor_label">Tocke</label>
-                    <input type="number" name="tocke_odgovor3" id="tocke_odgovor3" class="tocke_odgovor">
-                    <select name="pravilen3" id="pravilen3" class="pravilen-select">
+                    <input type="number" name="tocke_odgovor3" id="tocke_odgovor3" class="dodaj-input">
+                    <select name="pravilen3" id="pravilen3" class="dodaj-select">
                         <option value="0">False</option>
                         <option value="1">True</option>
                     </select>
@@ -159,10 +159,10 @@ exit();
 
                     <div class="odgovor-row">
                     <label for="odgovor4" class="odgovor-label">Odgovor4: </label>
-                    <input type="text" name="odgovor4" id="odgovor4_id" class="odgovor">
+                    <input type="text" name="odgovor4" id="odgovor4_id" class="dodaj-input">
                     <label for="tocke_odgovor4" class="tocke_odgovor_label">Tocke</label>
-                    <input type="number" name="tocke_odgovor4" id="tocke_odgovor4" class="tocke_odgovor">
-                    <select name="pravilen4" id="pravilen4" class="pravilen-select">
+                    <input type="number" name="tocke_odgovor4" id="tocke_odgovor4" class="dodaj-input">
+                    <select name="pravilen4" id="pravilen4" class="dodaj-select">
                         <option value="0">False</option>
                         <option value="1">True</option>
                     </select>
@@ -176,7 +176,7 @@ exit();
                 
 
                 <label for ="kategorija" class="kategorija">Izberi za katero kategorijo je</label>
-                    <select name="kategorije" id="kategorije">
+                    <select name="kategorije" id="kategorije" class="dodaj-select" >
                         <option value="A">Kategorija A (Motorji)</option>
                     <option value="B">Kategorija B (Avti)</option>
                     <option value="C">Kategorija C (Tovornjaki)</option>
@@ -186,7 +186,7 @@ exit();
 <br>
 
                 <label for="nalaganje_slik" class="nalaganje_slik">Nalozi sliko (ce je potrbno)</label><br>
-                <input type="file" id="slika_id" name="slika" class="slika-btn" accept="image/*"> <br>'
+                <input type="file" id="slika_id" name="slika" class="dodaj-input" accept="image/*"> <br>'
 
                 <input type="submit" value="Dodaj odgovore" class="submit-btn-dodajanje-vprasanje" name="sub">'
     

@@ -12,7 +12,6 @@ if (!isset($_SESSION['idu'])) {
 
 $uporabnik_id = $_SESSION['idu'];
 
-// Preveri, če je poslana kategorija
 if (isset($_GET['kategorija'])) {
     $kategorija_id = (int)$_GET['kategorija'];
 } else {
@@ -45,6 +44,7 @@ $rezultat = mysqli_query($link, $poizvedba);
 <head>
     <title>Prejšnji testi</title>
     <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <?php include_once 'glava.php'; ?>
@@ -89,6 +89,7 @@ $rezultat = mysqli_query($link, $poizvedba);
         }
         ?>
     </table>
+
 </body>
 <footer>
     <?php include_once 'noga.php'; ?>

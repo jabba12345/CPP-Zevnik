@@ -2,8 +2,13 @@
 include_once 'seja.php';
 require_once "povezava.php";
 
+if (isset($_GET['kategorija'])) {
+    $kategorija_id = $_GET['kategorija'];
+} else {
+    $kategorija_id = 0;
+}
 
-$kategorija_id = isset($_GET['kategorija']) ? $_GET['kategorija'] : 0;
+$vprasanja_data = [];
 
 if ($kategorija_id > 0) {
     $vprasanja_sql = "SELECT v.vprasanja_id, v.vprasanje, v.tipi_vprasanja_id, v.tocke_vprasanja, 
@@ -15,19 +20,16 @@ if ($kategorija_id > 0) {
                 WHERE kv.kategorije_id = $kategorija_id
                 ORDER BY RAND()
                 LIMIT 20";
-    $vprasanja = mysqli_query($link, $vprasanja_sql);
-
+    $vprasanja_result = mysqli_query($link, $vprasanja_sql);
 
     $_SESSION['idv'] = [];
-    if ($vprasanja) {
-        while ($row = mysqli_fetch_array($vprasanja)) {
-            $_SESSION['idv'][] = $row['vprasanja_id'];
-        }
-        
-        mysqli_data_seek($vprasanja, 0);
-    }
 
-    
+    if ($vprasanja_result) {
+        while ($row = mysqli_fetch_array($vprasanja_result)) {
+            $_SESSION['idv'][] = $row['vprasanja_id'];
+            $vprasanja_data[] = $row;
+    }
+}
 } 
 ?>
 <!DOCTYPE html>
@@ -35,25 +37,23 @@ if ($kategorija_id > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="style.css">
     <title>Test</title>
 </head>
 
 <body>
-<form action="rezultat.php?kategorija=<?php echo $kategorija_id; ?>" method="POST" class="uredi-form">
+<form action="rezultat.php?kategorija=<?php echo $kategorija_id; ?>" method="POST" class="test-form">
 
 <?php
-if (!empty($vprasanja)) {
+if (!empty($vprasanja_data)) {
 
-    while ($vprasanje = mysqli_fetch_array($vprasanja)) {
-        echo '<div class="vprasanje">';
-        
-
-        echo '<h3>' . $vprasanje['vprasanje'] . '</h3>';
+    foreach ($vprasanja_data as $vprasanje) {
+        echo '<div class="test-div">';
+        echo '<h3 class="test-h3">' . $vprasanje['vprasanje'] . '</h3>';
 
         if ($vprasanje['slika']) {
             $slika = base64_encode($vprasanje['slika']);
-            echo '<img src="data:image/png;base64,' . $slika . '" alt="Slika">';
+            echo '<img src="data:image/png;base64,' . $slika . '" alt="Slika" class="test-img">';
         }
 
         $vprasanje_id = $vprasanje['vprasanja_id'];
@@ -62,38 +62,41 @@ if (!empty($vprasanja)) {
         $odgovori_sql = "SELECT * FROM odgovori WHERE vprasanja_id = $vprasanje_id ORDER BY RAND()";
         $odgovori_result = mysqli_query($link, $odgovori_sql);
         $_SESSION['ido'][$vprasanje_id] = [];
+
         while ($odgovor = mysqli_fetch_array($odgovori_result)) {
             $_SESSION['ido'][$vprasanje_id][] = $odgovor;
         }
 
         foreach ($_SESSION['ido'][$vprasanje_id] as $odgovor) {
-            echo '<div>';
+            echo '<div class="test-div">';
 
             if ($tip_id == 1) {
                 echo '<input type="radio" 
                     name="vprasanje_' . $vprasanje_id . '" 
                     value="' . $odgovor['odgovori_id'] . '" 
-                    id="odgovor_' . $odgovor['odgovori_id'] . '">';
+                    id="odgovor_' . $odgovor['odgovori_id'] . '" 
+                    class="test-input">';
             } else if ($tip_id == 2) {
                 echo '<input type="checkbox" 
                     name="vprasanje_' . $vprasanje_id . '[]" 
                     value="' . $odgovor['odgovori_id'] . '" 
-                    id="odgovor_' . $odgovor['odgovori_id'] . '">';
+                    id="odgovor_' . $odgovor['odgovori_id'] . '" 
+                    class="test-input">';
             }
 
-            echo '<label for="odgovor_' . $odgovor['odgovori_id'] . '">' . $odgovor['odgovor'] . '</label>';
+            echo '<label class="test-label" for="odgovor_' . $odgovor['odgovori_id'] . '">' . $odgovor['odgovor'] . '</label>';
             echo '</div>';
-}
+        }
 
         echo '</div>';
     }
 
 } else {
-    echo '<p>Ni vprašanj za izbrano kategorijo.</p>';
+    echo '<p class="test-p">Ni vprašanj za izbrano kategorijo.</p>';
 }
 ?>
 
-    <input type="submit" value="Oddaj test">
+    <input type="submit" value="Oddaj" class="test-input">
 </form>
 </body>
 </html>

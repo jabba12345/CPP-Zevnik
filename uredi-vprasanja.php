@@ -84,11 +84,12 @@ if (isset($_POST["sub"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <?php include_once 'glava.php'?>
     <title>Urejanje Vprašanj</title>
 </head>
 <body>
     
-    <form action="uredi-vprasanja.php" method="post" enctype="multipart/form-data">
+    <form action="uredi-vprasanja.php" method="post" enctype="multipart/form-data" class="uredi-form">
         <input type="hidden" name="vprasanja_id" value="<?= intval($vprasanje_id)?>">
 
         <label for="vprasanje">Vprašanje:</label>
